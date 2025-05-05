@@ -27,3 +27,35 @@ compareButton.addEventListener("click", () => {
   uniqueList1Output.value = uniqueTo1.join("\n");
   uniqueList2Output.value = uniqueTo2.join("\n");
 });
+
+// Theme stuff
+const themeToggleButton = document.getElementById("themeToggle");
+const bodyElement = document.body;
+
+function applyTheme(theme) {
+  if (theme === "dark") {
+    bodyElement.classList.add("dark-theme");
+  } else {
+    bodyElement.classList.remove("dark-theme");
+  }
+}
+
+function toggleTheme() {
+  bodyElement.classList.toggle("dark-theme");
+
+  if (bodyElement.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+}
+
+themeToggleButton.addEventListener("click", toggleTheme);
+
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme) {
+  applyTheme(savedTheme);
+} else {
+  applyTheme("light");
+}
